@@ -1,4 +1,8 @@
 package az.lets_speak.ms.lets_speak.repository;
 
-public class ScheduleRepository {
+import az.lets_speak.ms.lets_speak.model.Schedule;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ScheduleRepository extends JpaRepository<Schedule, Integer> {
+
 }

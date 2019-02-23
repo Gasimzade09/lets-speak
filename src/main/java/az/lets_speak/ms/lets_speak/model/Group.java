@@ -31,4 +31,8 @@ public class Group {
     @OneToMany(mappedBy = "group")
     @JsonBackReference
     private Set<Student> students;
+
+    @OneToMany(mappedBy = "group")
+    @JsonBackReference
+    private Set<Schedule> schedules;
 }

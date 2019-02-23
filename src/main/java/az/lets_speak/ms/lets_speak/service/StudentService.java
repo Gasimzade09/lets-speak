@@ -5,9 +5,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class StudentService {
-    private final StudentRepository repository;
+    private final StudentRepository studentRepository;
 
-    public StudentService(StudentRepository repository) {
-        this.repository = repository;
+    public StudentService(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
     }
 }

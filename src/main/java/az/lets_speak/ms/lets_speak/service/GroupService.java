@@ -5,9 +5,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class GroupService {
-    private final GroupRepository repository;
+    private final GroupRepository groupRepository;
 
-    public GroupService(GroupRepository repository) {
-        this.repository = repository;
+    public GroupService(GroupRepository groupRepository) {
+        this.groupRepository = groupRepository;
     }
 }

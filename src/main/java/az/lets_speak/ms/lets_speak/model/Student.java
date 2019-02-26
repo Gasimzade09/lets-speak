@@ -1,36 +1,42 @@
 package az.lets_speak.ms.lets_speak.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.time.LocalDate;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
+@Data
 @Entity
-@Table(name = "student")
+@Table(name = "students")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Student {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "group_id")
-    @JsonManagedReference
-    private Group group;
+    private String name;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
+    private String surname;
 
-    @OneToMany(mappedBy = "student")
+    private String email;
+
+    private String skype;
+
+    private String phoneNumber;
+
+    private String password;
+
+    private LocalDate birthDate;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "teacher_id")
     @JsonBackReference
-    private Set<Schedule> schedules;
+    private Teacher teacher;
 }

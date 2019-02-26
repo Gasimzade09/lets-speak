@@ -7,5 +7,10 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface StudentRepository extends JpaRepository<Student, Integer> {
 
+    @Query(value = "SELECT t.name, t.surname, t.email, t.birth_date, t.phone_number, t.skype " +
+            "FROM teachers t LEFT JOIN students s " +
+            "ON t.id = s.teacher_id " +
+            "WHERE s.id = ?1", nativeQuery = true)
+    Teacher getTeacherByStudentId(int id);
 
 }

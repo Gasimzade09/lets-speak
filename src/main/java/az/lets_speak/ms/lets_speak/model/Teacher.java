@@ -39,4 +39,10 @@ public class Teacher {
     @JsonManagedReference
     private Set<Student> students;
 
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @OneToMany(mappedBy = "teacher")
+    @JsonManagedReference
+    private Set<Lesson> lessons;
+
 }

@@ -1,7 +1,7 @@
 package az.lets_speak.ms.lets_speak.service;
 
 import az.lets_speak.ms.lets_speak.dto.TeacherDTO;
-import az.lets_speak.ms.lets_speak.model.Teacher;
+import az.lets_speak.ms.lets_speak.model.TeacherEntity;
 import az.lets_speak.ms.lets_speak.repository.TeacherRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +15,7 @@ public class TeacherService {
         this.teacherRepository = teacherRepository;
     }
 
-    public Teacher getTeacherById(int id){
+    public TeacherEntity getTeacherById(int id){
         return teacherRepository.getOne(id);
     }
 

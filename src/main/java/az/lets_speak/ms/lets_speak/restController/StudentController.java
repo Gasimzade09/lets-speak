@@ -1,8 +1,6 @@
 package az.lets_speak.ms.lets_speak.restController;
 
 import az.lets_speak.ms.lets_speak.dto.StudentDto;
-import az.lets_speak.ms.lets_speak.dto.TeacherDTO;
-import az.lets_speak.ms.lets_speak.model.Student;
 import az.lets_speak.ms.lets_speak.service.StudentService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

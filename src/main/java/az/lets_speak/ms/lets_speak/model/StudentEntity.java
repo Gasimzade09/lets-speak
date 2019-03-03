@@ -1,5 +1,6 @@
 package az.lets_speak.ms.lets_speak.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
@@ -12,9 +13,10 @@ import java.util.Set;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "teachers")
+@Table(name = "students")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Teacher {
+public class StudentEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -33,16 +35,18 @@ public class Teacher {
 
     private LocalDate birthDate;
 
-    @EqualsAndHashCode.Exclude
-    @ToString.Exclude
-    @OneToMany(mappedBy = "teacher")
-    @JsonManagedReference
-    private Set<Student> students;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "teacher_id")
+    @JsonBackReference
+    private TeacherEntity teacher;
 
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    @OneToMany(mappedBy = "teacher")
+    @OneToMany(mappedBy = "student")
     @JsonManagedReference
-    private Set<Lesson> lessons;
+    private Set<LessonEntity> lessons;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="schedule_id")
+    private ScheduleEntity schedule;
 }

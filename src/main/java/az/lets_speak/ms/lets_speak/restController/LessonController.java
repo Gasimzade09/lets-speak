@@ -1,9 +1,6 @@
 package az.lets_speak.ms.lets_speak.restController;
 
 import az.lets_speak.ms.lets_speak.dto.LessonDto;
-import az.lets_speak.ms.lets_speak.model.Lesson;
-import az.lets_speak.ms.lets_speak.model.Student;
-import az.lets_speak.ms.lets_speak.model.Teacher;
 import az.lets_speak.ms.lets_speak.service.LessonService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

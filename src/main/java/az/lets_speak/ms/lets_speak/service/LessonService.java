@@ -1,15 +1,11 @@
 package az.lets_speak.ms.lets_speak.service;
 
 import az.lets_speak.ms.lets_speak.dto.LessonDto;
-import az.lets_speak.ms.lets_speak.model.Lesson;
-import az.lets_speak.ms.lets_speak.model.Student;
-import az.lets_speak.ms.lets_speak.model.Teacher;
+import az.lets_speak.ms.lets_speak.model.LessonEntity;
 import az.lets_speak.ms.lets_speak.repository.LessonRepository;
 import az.lets_speak.ms.lets_speak.repository.StudentRepository;
 import az.lets_speak.ms.lets_speak.repository.TeacherRepository;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
 
 @Service
 public class LessonService {
@@ -24,7 +20,7 @@ public class LessonService {
     }
 
     public void saveLesson(LessonDto lessonDto){
-        Lesson lesson = new Lesson();
+        LessonEntity lesson = new LessonEntity();
         lesson.setUrl(lessonDto.getUrl());
         lesson.setName(lessonDto.getName());
         lesson.setCreatedDate(lessonDto.getCreatedDate());
@@ -35,8 +31,8 @@ public class LessonService {
     }
 
     public LessonDto getLesson(){
-        Lesson lesson = lessonRepository.getOne(1);
-        LessonDto dto = new LessonDto(lesson.getName(), lesson.getUrl(), lesson.getCreatedDate(), lesson.getExpirationDate(), 7);
+        LessonEntity lesson = lessonRepository.getOne(1);
+        LessonDto dto = new LessonDto(lesson.getName(), lesson.getUrl(), lesson.getCreatedDate(), lesson.getExpirationDate(), 7, lesson.getTeacher().getId(), lesson.getStudent().getId());
         return dto;
     }
 }

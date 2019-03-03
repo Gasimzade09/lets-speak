@@ -1,16 +1,11 @@
 package az.lets_speak.ms.lets_speak.repository;
 
-import az.lets_speak.ms.lets_speak.model.Lesson;
+import az.lets_speak.ms.lets_speak.model.LessonEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDate;
-
 @Repository
-public interface LessonRepository extends JpaRepository<Lesson, Integer> {
+public interface LessonRepository extends JpaRepository<LessonEntity, Integer> {
 
     //@Modifying
     /*@Query(value = "INSERT INTO lessons (created_date, expiration_date, name, url, student_id, teacher_id) " +

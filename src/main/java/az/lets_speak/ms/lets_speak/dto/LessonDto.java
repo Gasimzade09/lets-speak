@@ -19,4 +19,8 @@ public class LessonDto {
     private LocalDate expirationDate;
 
     private int deadLine;
+
+    private int teacherId;
+
+    private int studentId;
 }

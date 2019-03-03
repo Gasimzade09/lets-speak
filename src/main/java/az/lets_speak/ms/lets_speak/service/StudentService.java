@@ -1,7 +1,7 @@
 package az.lets_speak.ms.lets_speak.service;
 
 import az.lets_speak.ms.lets_speak.dto.StudentDto;
-import az.lets_speak.ms.lets_speak.model.Student;
+import az.lets_speak.ms.lets_speak.model.StudentEntity;
 import az.lets_speak.ms.lets_speak.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +18,7 @@ public class StudentService {
     }
 
     public List<StudentDto> getStudentsByTeacherId(int id){
-        List<Student> students = studentRepository.getStudentsByTeacherId(id);
+        List<StudentEntity> students = studentRepository.getStudentsByTeacherId(id);
         List<StudentDto> studentsDto = new ArrayList<>();
         for (int i = 0; i < students.size(); i++) {
             dto.setName(students.get(i).getName());

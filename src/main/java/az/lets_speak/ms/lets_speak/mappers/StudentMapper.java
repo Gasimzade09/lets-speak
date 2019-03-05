@@ -16,6 +16,6 @@ public interface StudentMapper {
     @Mapping(source = "teacher.name", target = "teacherName")
     StudentDto studentToStudentDto(StudentEntity entity);
 
-    @Mapping(source = "teacher.name", target = "teacherName")
+   // @Mapping(source = "teacher.name", target = "teacherName")
     List<StudentDto> studentListToStudentDtoList(List<StudentEntity> entity);
 }

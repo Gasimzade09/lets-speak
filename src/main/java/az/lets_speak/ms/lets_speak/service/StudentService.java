@@ -12,7 +12,6 @@ import java.util.List;
 @Service
 public class StudentService {
     private final StudentRepository studentRepository;
-    private StudentDto dto = new StudentDto();
 
     public StudentService(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;

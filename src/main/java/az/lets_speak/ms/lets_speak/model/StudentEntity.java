@@ -44,7 +44,7 @@ public class StudentEntity {
     @ToString.Exclude
     @OneToMany(mappedBy = "student")
     @JsonManagedReference
-    private Set<LessonEntity> lessons;
+    private Set<TaskEntity> lessons;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="schedule_id")

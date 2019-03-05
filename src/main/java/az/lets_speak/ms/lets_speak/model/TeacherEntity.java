@@ -33,6 +33,10 @@ public class TeacherEntity {
 
     private LocalDate birthDate;
 
+    public LocalDate getBirthDate(){
+        return this.birthDate;
+    }
+
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @OneToMany(mappedBy = "teacher")
@@ -43,7 +47,7 @@ public class TeacherEntity {
     @ToString.Exclude
     @OneToMany(mappedBy = "teacher")
     @JsonManagedReference
-    private Set<LessonEntity> lessons;
+    private Set<TaskEntity> lessons;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="schedule_id")

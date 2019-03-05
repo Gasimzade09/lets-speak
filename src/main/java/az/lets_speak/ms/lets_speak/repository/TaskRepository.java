@@ -1,11 +1,15 @@
 package az.lets_speak.ms.lets_speak.repository;
 
-import az.lets_speak.ms.lets_speak.model.LessonEntity;
+import az.lets_speak.ms.lets_speak.model.TaskEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
-public interface LessonRepository extends JpaRepository<LessonEntity, Integer> {
+public interface TaskRepository extends JpaRepository<TaskEntity, Integer> {
 
     //@Modifying
     /*@Query(value = "INSERT INTO lessons (created_date, expiration_date, name, url, student_id, teacher_id) " +
@@ -13,4 +17,7 @@ public interface LessonRepository extends JpaRepository<LessonEntity, Integer> {
     public void setLessonForStudent(@Param("crDate")LocalDate crDate, @Param("expDate")LocalDate expDate,
                                     @Param("studentName")String studentName, @Param("url")String url, @Param("studentId")Integer studentId,
                                     @Param("teacherId")Integer teacherId);*/
+
+    @Query(value = "SELECT * FROM tasks t WHERE t.student_id = ?1", nativeQuery = true)
+    List<TaskEntity> getTaskEntitiesByStudentId( int id);
 }

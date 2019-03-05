@@ -11,9 +11,9 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "lessons")
+@Table(name = "tasks")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class LessonEntity {
+public class TaskEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

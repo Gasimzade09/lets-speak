@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class LessonDto {
+public class TaskDto {
     private String name;
 
     private String url;

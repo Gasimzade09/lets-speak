@@ -2,6 +2,7 @@ package az.lets_speak.ms.lets_speak.restController;
 
 import az.lets_speak.ms.lets_speak.dto.StudentDto;
 import az.lets_speak.ms.lets_speak.service.StudentService;
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/api")
+@Api(value = "/api", description = "Операции с профилем")
 public class StudentController {
     private final StudentService service;
 

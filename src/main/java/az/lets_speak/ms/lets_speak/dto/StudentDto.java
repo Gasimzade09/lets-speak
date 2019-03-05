@@ -1,6 +1,6 @@
 package az.lets_speak.ms.lets_speak.dto;
 
-import az.lets_speak.ms.lets_speak.model.LessonEntity;
+import az.lets_speak.ms.lets_speak.model.TaskEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,5 +26,7 @@ public class StudentDto {
 
     private LocalDate birthDate;
 
-    private Set<LessonEntity> lessons;
+    private String teacherName;
+
+    private Set<TaskEntity> lessons;
 }

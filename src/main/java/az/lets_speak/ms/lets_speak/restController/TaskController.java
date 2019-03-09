@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api")
 @Api(value = "/api", description = "Операции с профилем")
@@ -25,11 +26,11 @@ public class TaskController {
 
     @GetMapping("/task/get")
     public TaskDto getLesson(){
-        return taskService.getLesson();
+        return taskService.getTask();
     }
 
     @GetMapping("/tasks/get")
-    public List<TaskEntity> getTasksByStudentId(){
+    public List<TaskDto> getTasksByStudentId(){
         return taskService.getTasksByStudentId();
     }
 }

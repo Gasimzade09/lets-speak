@@ -17,4 +17,6 @@ public class ScheduleService {
     public List<ScheduleEntity> getScheduleByStudentId(int id){
         return scheduleRepository.getScheduleEntitiesByStudent(id);
     }
+
+
 }

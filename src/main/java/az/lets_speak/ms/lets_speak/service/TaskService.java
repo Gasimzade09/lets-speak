@@ -1,6 +1,7 @@
 package az.lets_speak.ms.lets_speak.service;
 
 import az.lets_speak.ms.lets_speak.dto.TaskDto;
+import az.lets_speak.ms.lets_speak.mappers.TaskMapper;
 import az.lets_speak.ms.lets_speak.model.TaskEntity;
 import az.lets_speak.ms.lets_speak.repository.TaskRepository;
 import az.lets_speak.ms.lets_speak.repository.StudentRepository;
@@ -32,13 +33,13 @@ public class TaskService {
         taskRepository.save(lesson);
     }
 
-    public TaskDto getLesson(){
-        TaskEntity lesson = taskRepository.getOne(1);
-        TaskDto dto = new TaskDto(lesson.getName(), lesson.getUrl(), lesson.getCreatedDate(), lesson.getExpirationDate(), 7, lesson.getTeacher().getId(), lesson.getStudent().getId());
+    public TaskDto getTask(){
+        TaskDto dto = TaskMapper.INSTANCE.entityToDto(taskRepository.getOne(1));
         return dto;
     }
 
-    public List<TaskEntity> getTasksByStudentId(){
-        return taskRepository.getTaskEntitiesByStudentId(2);
+    public List<TaskDto> getTasksByStudentId(){
+        List<TaskDto> dtos = TaskMapper.INSTANCE.entityListToDtoList(taskRepository.getTaskEntitiesByStudentId(1));
+        return dtos;
     }
 }

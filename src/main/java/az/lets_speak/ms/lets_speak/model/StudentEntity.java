@@ -21,20 +21,6 @@ public class StudentEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String name;
-
-    private String surname;
-
-    private String email;
-
-    private String skype;
-
-    private String phoneNumber;
-
-    private String password;
-
-    private LocalDate birthDate;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "teacher_id")
     @JsonBackReference

@@ -13,4 +13,13 @@ public interface StudentRepository extends JpaRepository<StudentEntity, Integer>
             "WHERE s.teacher_id = ?1", nativeQuery = true)
     List<StudentEntity> getStudentsByTeacherId(int id);
 
+    @Query(value = "SELECT id " +
+            "FROM students s " +
+            "WHERE s.email = ?1", nativeQuery = true)
+    Integer getIdByEmail(String email);
+
+    @Query(value = "UPDATE students SET rank = ?1 WHERE students.id = ?2", nativeQuery = true)
+    void setRank(double rank, int id);
+
+
 }

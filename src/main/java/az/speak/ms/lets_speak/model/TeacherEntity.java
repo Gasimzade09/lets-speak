@@ -30,9 +30,9 @@ public class TeacherEntity {
 
     private String phoneNumber;
 
-    private String password;
-
     private LocalDate birthDate;
+
+    private String cv;
 
     @EqualsAndHashCode.Exclude
     @ToString.Exclude

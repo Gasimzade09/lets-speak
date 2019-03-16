@@ -38,8 +38,8 @@ public class TaskService {
         return dto;
     }
 
-    public List<TaskDto> getTasksByStudentId(){
-        List<TaskDto> dtos = TaskMapper.INSTANCE.entityListToDtoList(taskRepository.getTaskEntitiesByStudentId(1));
+    public List<TaskDto> getTasksByStudentId(int id){
+        List<TaskDto> dtos = TaskMapper.INSTANCE.entityListToDtoList(taskRepository.getTaskEntitiesByStudentId(id));
         return dtos;
     }
 }

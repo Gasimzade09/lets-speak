@@ -18,5 +18,4 @@ public class ScheduleService {
         return scheduleRepository.getScheduleEntitiesByStudent(id);
     }
 
-
 }

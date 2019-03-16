@@ -31,9 +31,10 @@ public class StudentEntity {
 
     private String phoneNumber;
 
-    private String password;
-
     private LocalDate birthDate;
+
+
+    private Double rank = 0.0;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "teacher_id")

@@ -1,4 +1,4 @@
-package az.speak.ms.lets_speak.Controller;
+package az.speak.ms.lets_speak.controller;
 
 import az.speak.ms.lets_speak.dto.CourseDto;
 import az.speak.ms.lets_speak.service.CourseService;

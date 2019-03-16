@@ -1,8 +1,7 @@
-package az.speak.ms.lets_speak.Controller;
+package az.speak.ms.lets_speak.controller;
 
 import az.speak.ms.lets_speak.dto.TaskDto;
 import az.speak.ms.lets_speak.service.TaskService;
-import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,7 +9,6 @@ import java.util.List;
 @CrossOrigin
 @RestController
 @RequestMapping("/api")
-@Api(value = "/api", description = "Операции с профилем")
 public class TaskController {
     private final TaskService taskService;
 
@@ -28,8 +26,8 @@ public class TaskController {
         return taskService.getTask();
     }
 
-    @GetMapping("/tasks/get")
-    public List<TaskDto> getTasksByStudentId(){
-        return taskService.getTasksByStudentId();
+    @GetMapping("/tasks/get/{id}")
+    public List<TaskDto> getTasksByStudentId(@PathVariable int id){
+        return taskService.getTasksByStudentId(id);
     }
 }

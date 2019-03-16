@@ -1,14 +1,12 @@
-package az.speak.ms.lets_speak.Controller;
+package az.speak.ms.lets_speak.controller;
 
 import az.speak.ms.lets_speak.dto.TeacherDTO;
 import az.speak.ms.lets_speak.service.TeacherService;
-import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RestController
 @RequestMapping("/api")
-@Api(value = "/api", description = "Операции с профилем")
 public class TeacherController {
     private final TeacherService teacherService;
 

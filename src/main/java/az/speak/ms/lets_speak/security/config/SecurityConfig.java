@@ -11,12 +11,14 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -60,14 +62,31 @@ public class SecurityConfig
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/auth").permitAll()
+                .antMatchers("/api/auth").anonymous()
+                .antMatchers("/api/reg/student").permitAll()
                 .antMatchers("/api/courses/get").permitAll()
-                .anyRequest().authenticated(); // каждый реквест должен б ыть аутентифицирован
-
+                .antMatchers("/api/get/schedules/**").permitAll()
+                .antMatchers("/api/tasks/get/**").permitAll()
+                .antMatchers("/rest/uploadMultiFiles").permitAll()
+                .antMatchers("/api/upload/**").permitAll()
+                .antMatchers("/student.html").hasRole("STUDENT")
+                .anyRequest().authenticated()// каждый реквест должен б ыть аутентифицирован
+                .and()
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login");
         http
                 .addFilterBefore(authenticationTokenFilterBean(),
                         UsernamePasswordAuthenticationFilter.class);
 
+    }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/v2/api-docs",
+                "/configuration/ui",
+                "/swagger-resources/**",
+                "/configuration/**",
+                "/swagger-ui.html",
+                "/webjars/**");
     }
 
     @Override

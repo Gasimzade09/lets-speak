@@ -1,8 +1,7 @@
-package az.speak.ms.lets_speak.Controller;
+package az.speak.ms.lets_speak.controller;
 
 import az.speak.ms.lets_speak.dto.StudentDto;
 import az.speak.ms.lets_speak.service.StudentService;
-import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,7 +9,6 @@ import java.util.List;
 @CrossOrigin
 @RestController
 @RequestMapping("/api")
-@Api(value = "/api", description = "Операции с профилем")
 public class StudentController {
     private final StudentService service;
 
@@ -21,5 +19,15 @@ public class StudentController {
     @GetMapping("/teacher/get/students/{id}")
     public List<StudentDto> getStudentsByTeacherId(@PathVariable int id){
         return service.getStudentsByTeacherId(id);
+    }
+
+    @PostMapping(path = "/student/save", consumes = "application/json", produces = "application/json")
+    public StudentDto saveStudent(StudentDto studentDto){
+        return service.saveStudent(studentDto);
+    }
+
+    @GetMapping(path = "/get/id/{email}")
+    public Integer getIdByEmail(@PathVariable String email){
+        return service.getIdByEmail(email);
     }
 }

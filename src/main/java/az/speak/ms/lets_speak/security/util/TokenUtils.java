@@ -45,11 +45,11 @@ public class TokenUtils {
 
     public String generateToken(String username) {
         Map<String, Object> claims = new HashMap<>();
+
         return doGenerateToken(claims, username);
     }
 
-    private String doGenerateToken(Map<String, Object> claims,
-                                  String subject) {
+    private String doGenerateToken(Map<String, Object> claims, String subject) {
 
         Date createdDate = clock.now();
         Date expirationDate = calculateExpirationDate(createdDate);
@@ -76,9 +76,7 @@ public class TokenUtils {
 
         String username = getUsernameFromToken(token);
 
-        return Objects.equals(
-                username, userDetails.getUsername())
-                && !isTokenExpired(token);
+        return Objects.equals(username, userDetails.getUsername()) && !isTokenExpired(token);
 
 
     }

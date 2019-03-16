@@ -9,6 +9,8 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 public class CourseDto {
+    private Integer id;
+
     private String courseName;
 
     private String description;

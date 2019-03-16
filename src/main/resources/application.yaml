@@ -8,6 +8,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/lets_speak
     username: postgres
     password: admin
+
   jpa:
     database: postgresql
     properties:
@@ -21,3 +22,4 @@ jwt:
   secret: mySecretSignature
   expiration: 604800
   header: X-Auth-Token
+

@@ -12,6 +12,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class StudentDto {
+
     private String name;
 
     private String surname;
@@ -24,9 +25,9 @@ public class StudentDto {
 
     private String password;
 
-    private LocalDate birthDate;
+    private String birthDate;
 
     private String teacherName;
 
-    private Set<TaskEntity> lessons;
+    private double rank;
 }

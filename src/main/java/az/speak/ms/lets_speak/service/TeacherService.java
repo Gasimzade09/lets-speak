@@ -21,6 +21,7 @@ public class TeacherService {
 
 
     public TeacherDTO getTeacherByStudentId(int id){
+
         dto.setBirthDate(teacherRepository.getTeacherByStudentId(id).getBirthDate());
         dto.setName(teacherRepository.getTeacherByStudentId(id).getName());
         dto.setSurname(teacherRepository.getTeacherByStudentId(id).getSurname());

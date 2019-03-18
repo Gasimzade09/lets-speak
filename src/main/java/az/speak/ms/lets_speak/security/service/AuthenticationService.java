@@ -1,8 +1,11 @@
 package az.speak.ms.lets_speak.security.service;
 
 import az.speak.ms.lets_speak.dto.StudentDto;
+import az.speak.ms.lets_speak.dto.TeacherDTO;
 import az.speak.ms.lets_speak.mappers.StudentMapper;
+import az.speak.ms.lets_speak.mappers.TeacherMapper;
 import az.speak.ms.lets_speak.model.StudentEntity;
+import az.speak.ms.lets_speak.model.TeacherEntity;
 import az.speak.ms.lets_speak.model.UserEntity;
 import az.speak.ms.lets_speak.repository.StudentRepository;
 import az.speak.ms.lets_speak.repository.TeacherRepository;
@@ -83,13 +86,7 @@ public class AuthenticationService {
         if (checkEmail == null && emailValidation(studentDto.getEmail())) {
             String password = new BCryptPasswordEncoder().encode(studentDto.getPassword());
             UserEntity user = new UserEntity();
-            StudentEntity student = new StudentEntity();
-            student.setName(studentDto.getName());
-            student.setSurname(studentDto.getSurname());
-            student.setEmail(studentDto.getEmail());
-            student.setPhoneNumber(studentDto.getPhoneNumber());
-            student.setSkype(studentDto.getSkype());
-            student.setBirthDate(birthDate);
+            StudentEntity student = StudentMapper.dtoToEntity(studentDto);
 
             studentRepository.save(student);
 
@@ -102,6 +99,33 @@ public class AuthenticationService {
             user.setPassword(password);
             user.setPrivateId(studentRepository.getIdByEmail(studentDto.getEmail()));
             user.setRole(Role.ROLE_STUDENT.toString());
+            userRepository.save(user);
+            return user;
+        } else {
+            throw new AuthenticationException("This email is already exists");
+        }
+    }
+
+    public UserEntity signUpTeacher(TeacherDTO teacherDTO){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate birthDate = LocalDate.parse(teacherDTO.getBirthDate(), formatter);
+        UserEntity checkEmail = userRepository.getByEmail(teacherDTO.getEmail());
+        if (checkEmail == null && emailValidation(teacherDTO.getEmail())) {
+            String password = new BCryptPasswordEncoder().encode(teacherDTO.getPassword());
+            UserEntity user = new UserEntity();
+            TeacherEntity teacherEntity = TeacherMapper.dtoToEntity(teacherDTO);
+
+            teacherRepository.save(teacherEntity);
+
+            user.setName(teacherDTO.getName());
+            user.setSurname(teacherDTO.getSurname());
+            user.setEmail(teacherDTO.getEmail());
+            user.setBirthDate(birthDate);
+            user.setSkype(teacherDTO.getSkype());
+            user.setPhoneNumber(teacherDTO.getPhoneNumber());
+            user.setPassword(password);
+            user.setPrivateId(studentRepository.getIdByEmail(teacherDTO.getEmail()));
+            user.setRole(Role.ROLE_TEACHER.toString());
             userRepository.save(user);
             return user;
         } else {

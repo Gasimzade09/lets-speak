@@ -9,13 +9,11 @@ import net.bytebuddy.asm.Advice;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderDto {
-    private Integer id;
-
     private String courseName;
 
-    private String  tariffName;
+    private String tariffName;
 
     private String studentName;
 
-    private Integer teacherName;
+    private String teacherName;
 }

@@ -27,7 +27,5 @@ public class StudentDto {
 
     private String birthDate;
 
-    private String teacherName;
-
-    private double rank;
+    private Double rank;
 }

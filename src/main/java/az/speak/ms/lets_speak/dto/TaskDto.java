@@ -18,9 +18,5 @@ public class TaskDto {
 
     private LocalDate expirationDate;
 
-    private int deadLine;
-
     private String teacherName;
-
-    private String studentName;
 }

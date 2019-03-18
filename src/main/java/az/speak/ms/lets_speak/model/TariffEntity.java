@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -20,13 +21,13 @@ public class TariffEntity {
 
     private String countType;
 
-    private int duration;
+    private Integer duration;
 
-    private int timesAWeek;
+    private Integer timesAWeek;
 
-    private int count;
+    private Integer count;
 
-    private double price;
+    private BigDecimal price;
 
     @EqualsAndHashCode.Exclude
     @ToString.Exclude

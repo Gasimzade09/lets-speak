@@ -18,4 +18,9 @@ public class TeacherController {
     public TeacherDTO getTeacherByStudentId(@PathVariable int id){
         return teacherService.getTeacherByStudentId(id);
     }
+
+    @GetMapping("/student/get/{id}")
+    public TeacherDTO getTeacherById(@PathVariable Integer id){
+        return teacherService.getTeacherById(id);
+    }
 }

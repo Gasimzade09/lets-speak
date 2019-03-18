@@ -68,7 +68,8 @@ public class SecurityConfig
                 .antMatchers("/api/get/schedules/**").permitAll()
                 .antMatchers("/api/tasks/get/**").permitAll()
                 .antMatchers("/rest/uploadMultiFiles").permitAll()
-                .antMatchers("/api/upload/**").permitAll()
+                .antMatchers("/upload/**").permitAll()
+                .antMatchers("/uploads/**").permitAll()
                 .antMatchers("/student.html").hasRole("STUDENT")
                 .anyRequest().authenticated()// каждый реквест должен б ыть аутентифицирован
                 .and()

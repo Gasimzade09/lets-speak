@@ -17,13 +17,13 @@ public class StudentService {
     }
 
     public List<StudentDto> getStudentsByTeacherId(int id){
-        List<StudentDto> dtos = StudentMapper.INSTANCE.studentListToStudentDtoList(studentRepository.getStudentsByTeacherId(id));
+        List<StudentDto> dtos = StudentMapper.entityListToDtoList(studentRepository.getStudentsByTeacherId(id));
         return dtos;
     }
 
     public StudentDto saveStudent(StudentDto studentDto){
-        StudentEntity studentEntity = StudentMapper.INSTANCE.dtoToStudentEntity(studentDto);
-        return StudentMapper.INSTANCE.studentToStudentDto(studentRepository.save(studentEntity));
+        StudentEntity studentEntity = StudentMapper.dtoToEntity(studentDto);
+        return StudentMapper.entityToDto(studentRepository.save(studentEntity));
     }
 
     public void setRank(double rank, int id){

@@ -27,19 +27,19 @@ public class TaskService {
         lesson.setUrl(taskDto.getUrl());
         lesson.setName(taskDto.getName());
         lesson.setCreatedDate(taskDto.getCreatedDate());
-        lesson.setExpirationDate(taskDto.getCreatedDate().plusDays(taskDto.getDeadLine()));
+        lesson.setExpirationDate(taskDto.getCreatedDate());
         lesson.setTeacher(teacherRepository.getOne(1));
         lesson.setStudent(studentRepository.getOne(2));
         taskRepository.save(lesson);
     }
 
     public TaskDto getTask(){
-        TaskDto dto = TaskMapper.INSTANCE.entityToDto(taskRepository.getOne(1));
+        TaskDto dto = TaskMapper.entityToDto(taskRepository.getOne(1));
         return dto;
     }
 
     public List<TaskDto> getTasksByStudentId(int id){
-        List<TaskDto> dtos = TaskMapper.INSTANCE.entityListToDtoList(taskRepository.getTaskEntitiesByStudentId(id));
+        List<TaskDto> dtos = TaskMapper.entityListToDtoList(taskRepository.getTaskEntitiesByStudentId(id));
         return dtos;
     }
 }

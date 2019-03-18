@@ -18,14 +18,14 @@ public class CourseService {
     }
 
     public CourseDto getOne(int id){
-        CourseDto dto = CourseMapper.INSTANCE.entityToDto(courseRepository.getOne(id));
+        CourseDto dto = CourseMapper.entityToDto(courseRepository.getOne(id));
         return dto;
     }
 
     public List<CourseDto> getAll(){
         List<CourseDto> dtos = new ArrayList<>();
         for (CourseEntity entity:courseRepository.findAll()) {
-            dtos.add(CourseMapper.INSTANCE.entityToDto(entity));
+            dtos.add(CourseMapper.entityToDto(entity));
         }
         return dtos;
     }

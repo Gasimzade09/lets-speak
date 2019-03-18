@@ -6,10 +6,20 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
-public interface CourseMapper {
-    CourseMapper INSTANCE = Mappers.getMapper(CourseMapper.class);
+public class CourseMapper {
+    private static CourseDto courseDto = new CourseDto();
 
-    @Mapping(source = "name", target = "courseName")
-    CourseDto entityToDto(CourseEntity entity);
+    private static CourseEntity courseEntity = new CourseEntity();
+
+    public static CourseDto entityToDto(CourseEntity entity){
+        courseDto.setCourseName(entity.getName());
+        courseDto.setDescription(entity.getDescription());
+        return courseDto;
+    }
+
+    public static CourseEntity dtoToEntity(CourseDto dto){
+        courseEntity.setName(dto.getCourseName());
+        courseEntity.setDescription(dto.getDescription());
+        return courseEntity;
+    }
 }

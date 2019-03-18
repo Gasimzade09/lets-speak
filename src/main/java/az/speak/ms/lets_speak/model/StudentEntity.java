@@ -33,8 +33,7 @@ public class StudentEntity {
 
     private LocalDate birthDate;
 
-
-    private Double rank = 0.0;
+    private Double rank;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "teacher_id")

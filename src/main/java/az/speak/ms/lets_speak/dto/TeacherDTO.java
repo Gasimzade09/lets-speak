@@ -3,7 +3,6 @@ package az.speak.ms.lets_speak.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
@@ -23,5 +22,11 @@ public class TeacherDTO {
 
     private String phoneNumber;
 
-    private LocalDate birthDate;
+    private String password;
+
+    private String birthDate;
+
+    private String cv;
+
+    private CourseDto courses;
 }

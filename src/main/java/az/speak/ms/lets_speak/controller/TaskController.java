@@ -16,9 +16,9 @@ public class TaskController {
         this.taskService = lessonService;
     }
 
-    @PostMapping(path = "/task/save", consumes = "application/json", produces = "application/json")
-    public void setLesson(@RequestBody TaskDto lessonDto){
-        taskService.saveLesson(lessonDto);
+    @PostMapping(path = "/task/save{studentId}/{teacherId}", consumes = "application/json", produces = "application/json")
+    public void setLesson(@RequestBody TaskDto lessonDto, @PathVariable Integer studentId, @PathVariable Integer teacherId){
+        taskService.saveLesson(lessonDto, studentId, teacherId);
     }
 
     @GetMapping("/task/get")

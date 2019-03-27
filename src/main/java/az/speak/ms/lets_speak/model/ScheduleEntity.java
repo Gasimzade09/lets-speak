@@ -23,7 +23,6 @@ public class ScheduleEntity {
 
     private LocalTime time;
 
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "student_id")
     @JsonBackReference

@@ -1,12 +1,10 @@
 package az.speak.ms.lets_speak.dto;
 
-import az.speak.ms.lets_speak.model.TaskEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-import java.util.Set;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -28,4 +26,12 @@ public class StudentDto {
     private String birthDate;
 
     private Double rank;
+
+    private String photo;
+
+    private String teacherName;
+
+    private List<String> freeDays;
+
+    private List<String> freeTimes;
 }

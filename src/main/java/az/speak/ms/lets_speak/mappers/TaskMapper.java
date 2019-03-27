@@ -1,19 +1,15 @@
 package az.speak.ms.lets_speak.mappers;
 
-import az.speak.ms.lets_speak.dto.StudentDto;
 import az.speak.ms.lets_speak.dto.TaskDto;
-import az.speak.ms.lets_speak.model.StudentEntity;
 import az.speak.ms.lets_speak.model.TaskEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TaskMapper {
-    private static TaskEntity taskEntity = new TaskEntity();
-
-    private static TaskDto taskDto = new TaskDto();
 
     public static TaskEntity dtoToEntity(TaskDto dto){
+        TaskEntity taskEntity = new TaskEntity();
         taskEntity.setName(dto.getName());
         taskEntity.setCreatedDate(dto.getCreatedDate());
         taskEntity.setExpirationDate(dto.getExpirationDate());
@@ -22,6 +18,7 @@ public class TaskMapper {
     }
 
     public static TaskDto entityToDto(TaskEntity entity){
+        TaskDto taskDto = new TaskDto();
         taskDto.setCreatedDate(entity.getCreatedDate());
         taskDto.setExpirationDate(entity.getExpirationDate());
         taskDto.setName(entity.getName());

@@ -35,6 +35,8 @@ public class StudentEntity {
 
     private Double rank;
 
+    private String photo;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "teacher_id")
     @JsonBackReference

@@ -13,5 +13,8 @@ public interface TeacherRepository extends JpaRepository<TeacherEntity, Integer>
     TeacherEntity getTeacherByStudentId(int id);
 
     @Query(value = "UPDATE teachers SET cv = ?2 WHERE teachers.id = ?1", nativeQuery = true)
-    String setCvByTeacherId(Integer id, String cv);
+    void setCvByTeacherId(Integer id, String cv);
+
+    @Query(value = "SELECT id FROM teachers t WHERE t.email = ?1", nativeQuery = true)
+    Integer getIdByEmail(String email);
 }

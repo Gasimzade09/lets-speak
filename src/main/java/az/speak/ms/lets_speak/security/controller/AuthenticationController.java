@@ -2,7 +2,6 @@ package az.speak.ms.lets_speak.security.controller;
 
 import az.speak.ms.lets_speak.dto.StudentDto;
 import az.speak.ms.lets_speak.dto.TeacherDTO;
-import az.speak.ms.lets_speak.dto.UserDto;
 import az.speak.ms.lets_speak.model.UserEntity;
 import az.speak.ms.lets_speak.security.model.dto.JwtAuthenticationRequest;
 import az.speak.ms.lets_speak.security.model.dto.JwtAuthenticationResponse;
@@ -27,6 +26,11 @@ public class AuthenticationController {
         return service.createAuthenticationToken(request);
     }
 
+    @PutMapping("/logout")
+    public void logOut(@RequestParam String username){
+        service.logOut(username);
+    }
+
     @ApiOperation(value = "controller for student registration")
     @PostMapping("/reg/student")
     @ResponseStatus(HttpStatus.CREATED)
@@ -34,7 +38,7 @@ public class AuthenticationController {
         return service.signUp(student);
     }
 
-    @ApiOperation(value = "controller for student registration")
+    @ApiOperation(value = "controller for teacher registration")
     @PostMapping("/reg/teacher")
     @ResponseStatus(HttpStatus.CREATED)
     public UserEntity signUpTeacher(@RequestBody TeacherDTO teacher) {

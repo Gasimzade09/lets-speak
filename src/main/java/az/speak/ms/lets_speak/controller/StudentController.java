@@ -17,7 +17,7 @@ public class StudentController {
     }
 
     @GetMapping("/teacher/get/students/{id}")
-    public List<StudentDto> getStudentsByTeacherId(@PathVariable int id){
+    public List<StudentDto> getStudentsByTeacherId(@PathVariable Integer id){
         return service.getStudentsByTeacherId(id);
     }
 
@@ -26,8 +26,18 @@ public class StudentController {
         return service.saveStudent(studentDto);
     }
 
-    @GetMapping(path = "/get/id/{email}")
-    public Integer getIdByEmail(@PathVariable String email){
+    @GetMapping(path = "/get/id")
+    public Integer getIdByEmail(@RequestParam String email){
         return service.getIdByEmail(email);
+    }
+
+    @GetMapping(path = "/student/get/{id}")
+    public StudentDto getStudentById(@PathVariable Integer id){
+        return service.getStudentById(id);
+    }
+
+    @PostMapping(path = "/set/student/rank/{id}/{rank}")
+    public void setRank(@PathVariable Integer id, @PathVariable Double rank){
+        service.setRank(id, rank);
     }
 }

@@ -4,6 +4,7 @@ import az.speak.ms.lets_speak.dto.CourseDto;
 import az.speak.ms.lets_speak.mappers.CourseMapper;
 import az.speak.ms.lets_speak.model.CourseEntity;
 import az.speak.ms.lets_speak.repository.CourseRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -23,10 +24,7 @@ public class CourseService {
     }
 
     public List<CourseDto> getAll(){
-        List<CourseDto> dtos = new ArrayList<>();
-        for (CourseEntity entity:courseRepository.findAll()) {
-            dtos.add(CourseMapper.entityToDto(entity));
-        }
-        return dtos;
+
+        return CourseMapper.entityListToDtoList(courseRepository.findAll());
     }
 }

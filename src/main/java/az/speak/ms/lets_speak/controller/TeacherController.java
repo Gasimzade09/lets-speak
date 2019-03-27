@@ -19,8 +19,13 @@ public class TeacherController {
         return teacherService.getTeacherByStudentId(id);
     }
 
-    @GetMapping("/student/get/{id}")
+    @GetMapping("/teacher/get/{id}")
     public TeacherDTO getTeacherById(@PathVariable Integer id){
         return teacherService.getTeacherById(id);
+    }
+
+    @GetMapping("/teacher/get/id")
+    public Integer getIdByEmail(@RequestParam String email){
+        return teacherService.getIdByEmail(email);
     }
 }

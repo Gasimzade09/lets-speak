@@ -24,4 +24,8 @@ public class TeacherService {
         dto = TeacherMapper.entityToDto(teacherRepository.getTeacherByStudentId(id));
         return dto;
     }
+
+    public Integer getIdByEmail(String email) {
+        return teacherRepository.getIdByEmail(email);
+    }
 }

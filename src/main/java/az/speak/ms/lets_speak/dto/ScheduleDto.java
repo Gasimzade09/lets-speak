@@ -11,9 +11,9 @@ import java.time.LocalTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ScheduleDto {
-    private LocalDate date;
+    private String date;
 
-    private LocalTime time;
+    private String time;
 
     private String studentName;
 

@@ -22,14 +22,14 @@ public class TaskService {
         this.studentRepository = studentRepository;
     }
 
-    public void saveLesson(TaskDto taskDto){
+    public void saveLesson(TaskDto taskDto, Integer teacherId, Integer studentId){
         TaskEntity lesson = new TaskEntity();
         lesson.setUrl(taskDto.getUrl());
         lesson.setName(taskDto.getName());
         lesson.setCreatedDate(taskDto.getCreatedDate());
         lesson.setExpirationDate(taskDto.getCreatedDate());
-        lesson.setTeacher(teacherRepository.getOne(1));
-        lesson.setStudent(studentRepository.getOne(2));
+        lesson.setTeacher(teacherRepository.getOne(teacherId));
+        lesson.setStudent(studentRepository.getOne(studentId));
         taskRepository.save(lesson);
     }
 

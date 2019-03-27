@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -53,7 +54,6 @@ public class TokenUtils {
 
         Date createdDate = clock.now();
         Date expirationDate = calculateExpirationDate(createdDate);
-
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(subject) // username
@@ -61,7 +61,6 @@ public class TokenUtils {
                 .setExpiration(expirationDate)
                 .signWith(SignatureAlgorithm.HS512, secret)
                 .compact();
-
     }
 
     private Date calculateExpirationDate(Date createdDate) {

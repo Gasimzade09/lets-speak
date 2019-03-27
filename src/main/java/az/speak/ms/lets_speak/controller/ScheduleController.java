@@ -1,6 +1,6 @@
 package az.speak.ms.lets_speak.controller;
 
-import az.speak.ms.lets_speak.model.ScheduleEntity;
+import az.speak.ms.lets_speak.dto.ScheduleDto;
 import az.speak.ms.lets_speak.service.ScheduleService;
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +20,12 @@ public class ScheduleController {
     }
 
     @GetMapping("/get/schedules/{id}")
-    public List<ScheduleEntity> getScheduleByStudentId(@PathVariable int id){
+    public List<ScheduleDto> getScheduleByStudentId(@PathVariable int id){
         return scheduleService.getScheduleByStudentId(id);
+    }
+
+    @GetMapping("/get/teacher/schedules/{id}")
+    public List<ScheduleDto> getScheduleByTeacherId(@PathVariable Integer id){
+        return scheduleService.getScheduleByTeacherId(id);
     }
 }

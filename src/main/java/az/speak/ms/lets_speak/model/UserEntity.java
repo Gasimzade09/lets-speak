@@ -35,4 +35,6 @@ public class UserEntity {
 
     private Integer privateId;
 
+    private String token;
+
 }

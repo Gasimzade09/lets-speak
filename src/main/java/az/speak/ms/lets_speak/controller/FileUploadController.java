@@ -1,22 +1,19 @@
 package az.speak.ms.lets_speak.controller;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-
-import az.speak.ms.lets_speak.repository.TeacherRepository;
-import org.springframework.http.HttpStatus;
+import az.speak.ms.lets_speak.service.FileUploadService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.persistence.criteria.CriteriaBuilder;
+
 @RestController
 @CrossOrigin
-public class FileUploadController {
-    private final TeacherRepository teacherRepository;
-    private int i = 10;
+public class FileUploadController<handle> {
 
-    public FileUploadController(TeacherRepository teacherRepository) {
-        this.teacherRepository = teacherRepository;
+    private final FileUploadService fileUploadService;
+
+    public FileUploadController(FileUploadService fileUploadService) {
+        this.fileUploadService = fileUploadService;
     }
 
     @RequestMapping(value="/upload", method=RequestMethod.GET)
@@ -27,27 +24,14 @@ public class FileUploadController {
     @RequestMapping(value="/upload/{id}", method=RequestMethod.POST)
     public @ResponseBody String handleFileUpload(@PathVariable Integer id,
                                                  @RequestParam("file") MultipartFile file){
-        String name = file.getOriginalFilename();
-        int lastIndexOf = name.lastIndexOf(".");
-
-        File upload = new File("src\\main\\resources\\static\\uploads\\uploaded-"+
-                i+name.substring(lastIndexOf));
-        if (!file.isEmpty()) {
-            try {
-                byte[] bytes = file.getBytes();
-                BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(upload));
-                stream.write(bytes);
-                stream.close();
-                teacherRepository.setCvByTeacherId(id, "/uploads/uploaded-"+i+name.substring(lastIndexOf));
-                i++;
-                return "Вы удачно загрузили " + name + " в " + name + "-uploaded !";
-            } catch (Exception e) {
-                return "Вам не удалось загрузить " + name + " => " + e.getMessage();
-            }
-        } else {
-            return "Вам не удалось загрузить " + name + " потому что файл пустой.";
-        }
-
+        return fileUploadService.fileUpload(id, file);
     }
 
+    @RequestMapping(value= "/upload/task/{studentId}/{teacherId}/{taskName}", method=RequestMethod.POST)
+    public @ResponseBody String handleTaskUpload(@PathVariable Integer studentId,
+                                                 @PathVariable Integer teacherId,
+                                                 @PathVariable String taskName,
+                                                 @RequestParam("file") MultipartFile file){
+        return fileUploadService.taskUpload(studentId, teacherId, taskName, file);
+    }
 }

@@ -18,7 +18,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -28,6 +27,7 @@ public class SecurityConfig
         extends WebSecurityConfigurerAdapter {
 
     private final SecurityUserService userService;
+
 
     private final EntryPointUnauthorizedHandler unauthorizedHandler;
 
@@ -62,18 +62,18 @@ public class SecurityConfig
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
+                .antMatchers("/api/**").permitAll()
                 .antMatchers("/api/auth").anonymous()
-                .antMatchers("/api/reg/student").permitAll()
-                .antMatchers("/api/courses/get").permitAll()
-                .antMatchers("/api/get/schedules/**").permitAll()
-                .antMatchers("/api/tasks/get/**").permitAll()
+                .antMatchers("/api/get/students/**").hasRole("TEACHER")
                 .antMatchers("/rest/uploadMultiFiles").permitAll()
                 .antMatchers("/upload/**").permitAll()
                 .antMatchers("/uploads/**").permitAll()
-                .antMatchers("/student.html").hasRole("STUDENT")
-                .anyRequest().authenticated()// каждый реквест должен б ыть аутентифицирован
-                .and()
-                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login");
+
+                //.antMatchers("/student-page").permitAll()
+             ///   .antMatchers("/swagger-ui.html").permitAll()
+              //  .antMatchers("http://localhost:63342/lets_speak-front/student.html").hasRole("STUDENT")
+                .anyRequest().authenticated();// каждый реквест должен быть аутентифицирован
+
         http
                 .addFilterBefore(authenticationTokenFilterBean(),
                         UsernamePasswordAuthenticationFilter.class);
@@ -82,12 +82,13 @@ public class SecurityConfig
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/v2/api-docs",
-                "/configuration/ui",
-                "/swagger-resources/**",
-                "/configuration/**",
-                "/swagger-ui.html",
-                "/webjars/**");
+        web.ignoring()
+                .antMatchers("/v2/api-docs",
+                        "/configuration/ui",
+                        "/swagger-resources/**",
+                        "/configuration/security",
+                        "/swagger-ui.html/**",
+                        "/webjars/**");
     }
 
     @Override
@@ -104,4 +105,20 @@ public class SecurityConfig
         return new BCryptPasswordEncoder();
     }
 
+    /*@Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        final CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(ImmutableList.of("*"));
+        configuration.setAllowedMethods(ImmutableList.of("HEAD",
+                "GET", "POST", "PUT", "DELETE", "PATCH"));
+        // setAllowCredentials(true) is important, otherwise:
+        // The value of the 'Access-Control-Allow-Origin' header in the response must not be the wildcard '*' when the request's credentials mode is 'include'.
+        configuration.setAllowCredentials(true);
+        // setAllowedHeaders is important! Without it, OPTIONS preflight request
+        // will fail with 403 Invalid CORS request
+        configuration.setAllowedHeaders(ImmutableList.of("Authorization", "Cache-Control", "Content-Type"));
+        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }*/
 }

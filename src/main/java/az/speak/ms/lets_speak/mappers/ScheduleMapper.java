@@ -12,21 +12,17 @@ import java.util.List;
 public class ScheduleMapper {
 
     public static ScheduleEntity dtoToEntity(ScheduleDto dto){
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-mm-dd");
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("hh:mm");
-        LocalDate date = LocalDate.parse(dto.getDate(), dateFormatter);
-        LocalTime time = LocalTime.parse(dto.getTime(), timeFormatter);
         ScheduleEntity scheduleEntity = new ScheduleEntity();
-        scheduleEntity.setDate(date);
-        scheduleEntity.setTime(time);
+        scheduleEntity.setDate(dto.getDate());
+        scheduleEntity.setTime(dto.getTime());
         return scheduleEntity;
     }
 
     public static ScheduleDto entityToDto(ScheduleEntity entity){
 
         ScheduleDto scheduleDto = new ScheduleDto();
-        scheduleDto.setDate(entity.getDate().toString());
-        scheduleDto.setTime(entity.getTime().toString());
+        scheduleDto.setDate(entity.getDate());
+        scheduleDto.setTime(entity.getTime());
         scheduleDto.setStudentName(entity.getStudent().getName());
         scheduleDto.setTeacherName(entity.getTeacher().getName());
         return scheduleDto;

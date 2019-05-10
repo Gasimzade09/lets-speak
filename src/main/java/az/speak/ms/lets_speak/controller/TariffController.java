@@ -1,7 +1,10 @@
 package az.speak.ms.lets_speak.controller;
 
-import az.speak.ms.lets_speak.model.TariffEntity;
+import az.speak.ms.lets_speak.dto.TariffDto;
 import az.speak.ms.lets_speak.service.TariffService;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +23,7 @@ public class TariffController {
     }
 
     @GetMapping("/get/tariffs")
-    public List<TariffEntity> getAll(){
-        return tariffService.getAll();
+    public List<TariffDto> getAll(@PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable){
+        return tariffService.getAll(pageable);
     }
 }

@@ -12,6 +12,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Builder
 @Entity
 @Table(name = "teachers")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -36,7 +37,11 @@ public class TeacherEntity {
 
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    @OneToMany(mappedBy = "teacher")
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "teachers_students",
+            joinColumns = @JoinColumn(name = "teacher_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "student_id", referencedColumnName = "id")
+    )
     @JsonManagedReference
     private Set<StudentEntity> students;
 

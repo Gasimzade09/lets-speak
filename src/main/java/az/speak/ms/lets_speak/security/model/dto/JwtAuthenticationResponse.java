@@ -7,8 +7,14 @@ public class JwtAuthenticationResponse {
 
     private final String token;
 
-    public JwtAuthenticationResponse(String token) {
+    private final String userRole;
+
+    private final Integer privateId;
+
+    public JwtAuthenticationResponse(String token, String userRole, Integer privateId) {
         this.token = token;
+        this.userRole = userRole;
+        this.privateId = privateId;
     }
 
 }

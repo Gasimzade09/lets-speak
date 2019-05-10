@@ -17,6 +17,10 @@ public interface ScheduleRepository extends JpaRepository<ScheduleEntity, Intege
     @Query(value = "SELECT teacher_id FROM schedules s WHERE s.date != ?1 OR s.time !=?2", nativeQuery = true)
     List<Integer> getFreeTeachers(LocalDate date, LocalTime time);
 
+    List<ScheduleEntity> getScheduleEntitiesByDateAndTime(LocalDate freeDate, LocalTime freeTime);
+
     @Query(value = "SELECT * FROM schedules s WHERE s.teacher_id = ?1", nativeQuery = true)
     List<ScheduleEntity> getScheduleEntitiesByTeacher(Integer id);
+
+
 }

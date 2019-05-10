@@ -1,7 +1,10 @@
 package az.speak.ms.lets_speak.controller;
 
+import az.speak.ms.lets_speak.dto.UserDto;
 import az.speak.ms.lets_speak.service.UserService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin
 @RestController
@@ -16,5 +19,20 @@ public class UserController {
     @PostMapping(path = "/set/user/token/{username}/{token}")
     public void setTokenByUsername(@PathVariable String username, @PathVariable String token){
         userService.setTokenByUsername(username, token);
+    }
+
+    @PostMapping(path = "/delete/token/{username}")
+    public void removeToken(@PathVariable String username){
+        userService.deleteToken(username);
+    }
+
+    @GetMapping(path = "/get/user/id/{id}/{role}")
+    public UserDto getUser(@PathVariable Integer id, @PathVariable String role){
+        return userService.getUserById(id, role);
+    }
+
+    @GetMapping(path="/users/get/all")
+    public List<UserDto> getAll(){
+        return userService.getlAll();
     }
 }

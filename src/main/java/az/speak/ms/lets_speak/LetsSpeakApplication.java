@@ -20,13 +20,13 @@ import java.util.Properties;
 @EnableAutoConfiguration
 public class LetsSpeakApplication {
 
-    @Bean
+    /*@Bean
     public MultipartConfigElement multipartConfigElement() {
         MultipartConfigFactory factory = new MultipartConfigFactory();
         factory.setMaxFileSize(DataSize.ofBytes(128000L));
         factory.setMaxRequestSize(DataSize.ofBytes(128000L));
         return factory.createMultipartConfig();
-    }
+    }*/
 
 
 

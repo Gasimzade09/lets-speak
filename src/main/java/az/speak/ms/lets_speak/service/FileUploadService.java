@@ -1,15 +1,18 @@
 package az.speak.ms.lets_speak.service;
 
 import az.speak.ms.lets_speak.model.TaskEntity;
+import az.speak.ms.lets_speak.model.TeacherEntity;
 import az.speak.ms.lets_speak.repository.StudentRepository;
 import az.speak.ms.lets_speak.repository.TaskRepository;
 import az.speak.ms.lets_speak.repository.TeacherRepository;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.time.LocalDate;
 
 @Service
@@ -24,8 +27,9 @@ public class FileUploadService {
         this.studentRepository = studentRepository;
     }
 
-    public String fileUpload(Integer id, MultipartFile file){
 
+
+    public String setCvForTeacher(Integer id, MultipartFile file){
         String name = file.getOriginalFilename();
         int lastIndexOf = name.lastIndexOf(".");
 
@@ -37,9 +41,10 @@ public class FileUploadService {
                 BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(upload));
                 stream.write(bytes);
                 stream.close();
-                teacherRepository.setCvByTeacherId(id, "/uploads/cv/cv-"+
-                        id+"-"+i+name.substring(lastIndexOf));
-                i++;
+                TeacherEntity entity = teacherRepository.getOne(id);
+                entity.setCv("/uploads/cv/cv-"+ id+"-"+i+name.substring(lastIndexOf));
+                teacherRepository.save(entity);
+
                 return "Вы удачно загрузили " + name + " в " + name + "-uploaded !";
             } catch (Exception e) {
                 return "Вам не удалось загрузить " + name + " => " + e.getMessage();
@@ -55,27 +60,32 @@ public class FileUploadService {
 
         File upload = new File("src\\main\\resources\\static\\uploads\\tasks\\task-"+
                 studentId+"-" + teacherId+ "-" + i + name.substring(lastIndexOf));
-        if (!file.isEmpty()) {
+        if (!file.isEmpty()&& name.substring(lastIndexOf).equals(".pdf")) {
             try {
                 byte[] bytes = file.getBytes();
                 BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(upload));
                 stream.write(bytes);
                 stream.close();
                 TaskEntity task = new TaskEntity();
-                task.setUrl("/uploads/tasks/task-"+ studentId+"-" + teacherId+ "-" + i + name.substring(lastIndexOf));
+                task.setUrl("/uploads/tasks/task-" + studentId + "-" + teacherId + "-" + i + "-" + taskName + name.substring(lastIndexOf));
                 task.setName(taskName);
                 task.setStudent(studentRepository.getOne(studentId));
                 task.setTeacher(teacherRepository.getOne(teacherId));
                 task.setCreatedDate(LocalDate.now());
                 task.setExpirationDate(LocalDate.now().plusDays(10L));
                 taskRepository.save(task);
-
+                this.i++;
                 return "Вы удачно загрузили " + name + " в " + name + "-uploaded !";
             } catch (Exception e) {
                 return "Вам не удалось загрузить " + name + " => " + e.getMessage();
             }
-        } else {
+        } else if (!name.substring(lastIndexOf).equals(".pdf")){
+            return "Формат файла не поддерживается";
+        }
+        else {
             return "Вам не удалось загрузить " + name + " потому что файл пустой.";
         }
     }
+
+
 }

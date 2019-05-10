@@ -10,6 +10,8 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TariffDto {
+    private Integer id;
+
     private String name;
 
     private String countType;

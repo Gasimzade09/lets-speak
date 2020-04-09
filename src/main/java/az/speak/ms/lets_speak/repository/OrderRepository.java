@@ -10,15 +10,11 @@ import java.util.List;
 
 
 public interface OrderRepository extends JpaRepository<OrderEntity, Integer> {
-<<<<<<< HEAD
     @Query(value = "SELECT * FROM orders o WHERE o.student_id = ?1", nativeQuery = true)
     List<OrderEntity> getOrderEntitiesByStudentId(Integer id);
-=======
 
     Page<OrderEntity> findAll(Pageable pageable);
 
     Page<OrderEntity> getOrderEntitiesByStudentId(Integer id, Pageable pageable);
->>>>>>> 544e5c54ddb5e164d8513dbf32ce9bdea74234e5
-
 
 }

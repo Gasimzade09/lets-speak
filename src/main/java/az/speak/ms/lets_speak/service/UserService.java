@@ -1,10 +1,9 @@
 package az.speak.ms.lets_speak.service;
 
-<<<<<<< HEAD
-=======
+
 import az.speak.ms.lets_speak.dto.UserDto;
 import az.speak.ms.lets_speak.mappers.UserMapper;
->>>>>>> 544e5c54ddb5e164d8513dbf32ce9bdea74234e5
+
 import az.speak.ms.lets_speak.model.UserEntity;
 import az.speak.ms.lets_speak.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -29,8 +28,6 @@ public class UserService {
         UserEntity userEntity = userRepository.getByEmail(username);
         userEntity.setToken(null);
         userRepository.save(userEntity);
-<<<<<<< HEAD
-=======
     }
 
     public UserDto getUserById(Integer id, String role) {
@@ -39,6 +36,5 @@ public class UserService {
 
     public List<UserDto> getlAll() {
         return UserMapper.entityListToDtoList((List<UserEntity>) userRepository.findAll());
->>>>>>> 544e5c54ddb5e164d8513dbf32ce9bdea74234e5
     }
 }

@@ -35,11 +35,12 @@ public class TariffMapper {
         return entity;
     }
 
-<<<<<<< HEAD
+
     public static List<TariffDto> entityListToDtoList(List<TariffEntity> tariffEntities){
-=======
+        return null;
+    }
+
     public static List<TariffDto> entityListToDtoList(Page<TariffEntity> tariffEntities){
->>>>>>> 544e5c54ddb5e164d8513dbf32ce9bdea74234e5
         List<TariffDto> dtos = new ArrayList<>();
         for (TariffEntity t : tariffEntities) {
             dtos.add(entityToDto(t));

@@ -25,8 +25,7 @@ public class UserController {
     public void removeToken(@PathVariable String username){
         userService.deleteToken(username);
     }
-<<<<<<< HEAD
-=======
+
 
     @GetMapping(path = "/get/user/id/{id}/{role}")
     public UserDto getUser(@PathVariable Integer id, @PathVariable String role){
@@ -37,5 +36,5 @@ public class UserController {
     public List<UserDto> getAll(){
         return userService.getlAll();
     }
->>>>>>> 544e5c54ddb5e164d8513dbf32ce9bdea74234e5
+
 }

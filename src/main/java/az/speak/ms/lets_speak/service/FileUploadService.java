@@ -44,11 +44,8 @@ public class FileUploadService {
                 TeacherEntity entity = teacherRepository.getOne(id);
                 entity.setCv("/uploads/cv/cv-"+ id+"-"+i+name.substring(lastIndexOf));
                 teacherRepository.save(entity);
-<<<<<<< HEAD
-                i++;
-=======
 
->>>>>>> 544e5c54ddb5e164d8513dbf32ce9bdea74234e5
+                i++;
                 return "Вы удачно загрузили " + name + " в " + name + "-uploaded !";
             } catch (Exception e) {
                 return "Вам не удалось загрузить " + name + " => " + e.getMessage();
@@ -71,11 +68,9 @@ public class FileUploadService {
                 stream.write(bytes);
                 stream.close();
                 TaskEntity task = new TaskEntity();
-<<<<<<< HEAD
+
                 task.setUrl("/uploads/tasks/task-" + studentId + "-" + teacherId + "-" + i + name.substring(lastIndexOf));
-=======
                 task.setUrl("/uploads/tasks/task-" + studentId + "-" + teacherId + "-" + i + "-" + taskName + name.substring(lastIndexOf));
->>>>>>> 544e5c54ddb5e164d8513dbf32ce9bdea74234e5
                 task.setName(taskName);
                 task.setStudent(studentRepository.getOne(studentId));
                 task.setTeacher(teacherRepository.getOne(teacherId));
@@ -94,6 +89,4 @@ public class FileUploadService {
             return "Вам не удалось загрузить " + name + " потому что файл пустой.";
         }
     }
-
-
 }

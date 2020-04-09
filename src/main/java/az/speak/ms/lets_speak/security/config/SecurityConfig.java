@@ -44,8 +44,7 @@ public class SecurityConfig
 
     @Bean
     public AuthenticationTokenFilter authenticationTokenFilterBean() throws Exception {
-        AuthenticationTokenFilter authenticationTokenFilter =
-                new AuthenticationTokenFilter();
+        AuthenticationTokenFilter authenticationTokenFilter = new AuthenticationTokenFilter();
         authenticationTokenFilter.setAuthenticationManager(authenticationManagerBean());
         return authenticationTokenFilter;
     }
@@ -68,7 +67,7 @@ public class SecurityConfig
                 .antMatchers("/rest/uploadMultiFiles").permitAll()
                 .antMatchers("/upload/**").permitAll()
                 .antMatchers("/uploads/**").permitAll()
-
+                .antMatchers("/api/exit").permitAll()
                 //.antMatchers("/student-page").permitAll()
              ///   .antMatchers("/swagger-ui.html").permitAll()
               //  .antMatchers("http://localhost:63342/lets_speak-front/student.html").hasRole("STUDENT")

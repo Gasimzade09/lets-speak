@@ -17,4 +17,9 @@ public class UserController {
     public void setTokenByUsername(@PathVariable String username, @PathVariable String token){
         userService.setTokenByUsername(username, token);
     }
+
+    @PostMapping(path = "/delete/token/{username}")
+    public void removeToken(@PathVariable String username){
+        userService.deleteToken(username);
+    }
 }

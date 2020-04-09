@@ -21,7 +21,7 @@ public class StudentMapper {
         studentDto.setSkype(entity.getSkype());
         studentDto.setRank(entity.getRank());
         studentDto.setPhoto(entity.getPhoto());
-        studentDto.setTeacherName(entity.getTeacher().getName());
+        studentDto.setId(entity.getId());
         return studentDto;
     }
 
@@ -43,7 +43,6 @@ public class StudentMapper {
         studentEntity.setEmail(studentDto.getEmail());
         studentEntity.setSkype(studentDto.getSkype());
         studentEntity.setBirthDate(birthDate);
-        studentEntity.setRank(studentDto.getRank());
         studentEntity.setPhoto(studentDto.getPhoto());
         return studentEntity;
     }

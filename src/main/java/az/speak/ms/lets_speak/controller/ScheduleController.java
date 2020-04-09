@@ -1,10 +1,12 @@
 package az.speak.ms.lets_speak.controller;
 
 import az.speak.ms.lets_speak.dto.ScheduleDto;
+import az.speak.ms.lets_speak.dto.StudentDto;
 import az.speak.ms.lets_speak.service.ScheduleService;
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @CrossOrigin
@@ -28,4 +30,5 @@ public class ScheduleController {
     public List<ScheduleDto> getScheduleByTeacherId(@PathVariable Integer id){
         return scheduleService.getScheduleByTeacherId(id);
     }
+
 }

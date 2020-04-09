@@ -3,6 +3,7 @@ package az.speak.ms.lets_speak.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
 
@@ -27,6 +28,8 @@ public class TeacherDTO {
     private String birthDate;
 
     private String cv;
+
+    private MultipartFile file;
 
     private CourseDto courses;
 }

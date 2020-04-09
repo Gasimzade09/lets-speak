@@ -24,7 +24,6 @@ public class CourseService {
     }
 
     public List<CourseDto> getAll(){
-
         return CourseMapper.entityListToDtoList(courseRepository.findAll());
     }
 }

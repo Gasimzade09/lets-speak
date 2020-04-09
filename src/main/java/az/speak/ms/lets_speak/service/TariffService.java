@@ -1,6 +1,7 @@
 package az.speak.ms.lets_speak.service;
 
-import az.speak.ms.lets_speak.model.TariffEntity;
+import az.speak.ms.lets_speak.dto.TariffDto;
+import az.speak.ms.lets_speak.mappers.TariffMapper;
 import az.speak.ms.lets_speak.repository.TariffRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,7 @@ public class TariffService {
         this.tariffRepository = tariffRepository;
     }
 
-    public List<TariffEntity> getAll(){
-        return tariffRepository.findAll();
+    public List<TariffDto> getAll(){
+        return TariffMapper.entityListToDtoList(tariffRepository.findAll());
     }
 }

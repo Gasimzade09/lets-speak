@@ -1,6 +1,7 @@
 package az.speak.ms.lets_speak.service;
 
 import az.speak.ms.lets_speak.model.TaskEntity;
+import az.speak.ms.lets_speak.model.TeacherEntity;
 import az.speak.ms.lets_speak.repository.StudentRepository;
 import az.speak.ms.lets_speak.repository.TaskRepository;
 import az.speak.ms.lets_speak.repository.TeacherRepository;
@@ -10,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.time.LocalDate;
 
 @Service
@@ -24,8 +26,9 @@ public class FileUploadService {
         this.studentRepository = studentRepository;
     }
 
-    public String fileUpload(Integer id, MultipartFile file){
 
+
+    public String setCvForTeacher(Integer id, MultipartFile file){
         String name = file.getOriginalFilename();
         int lastIndexOf = name.lastIndexOf(".");
 
@@ -37,8 +40,9 @@ public class FileUploadService {
                 BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(upload));
                 stream.write(bytes);
                 stream.close();
-                teacherRepository.setCvByTeacherId(id, "/uploads/cv/cv-"+
-                        id+"-"+i+name.substring(lastIndexOf));
+                TeacherEntity entity = teacherRepository.getOne(id);
+                entity.setCv("/uploads/cv/cv-"+ id+"-"+i+name.substring(lastIndexOf));
+                teacherRepository.save(entity);
                 i++;
                 return "Вы удачно загрузили " + name + " в " + name + "-uploaded !";
             } catch (Exception e) {
@@ -62,7 +66,7 @@ public class FileUploadService {
                 stream.write(bytes);
                 stream.close();
                 TaskEntity task = new TaskEntity();
-                task.setUrl("/uploads/tasks/task-"+ studentId+"-" + teacherId+ "-" + i + name.substring(lastIndexOf));
+                task.setUrl("/uploads/tasks/task-" + studentId + "-" + teacherId + "-" + i + name.substring(lastIndexOf));
                 task.setName(taskName);
                 task.setStudent(studentRepository.getOne(studentId));
                 task.setTeacher(teacherRepository.getOne(teacherId));

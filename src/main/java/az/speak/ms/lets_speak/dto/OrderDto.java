@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import net.bytebuddy.asm.Advice;
 
+import java.math.BigDecimal;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,4 +18,6 @@ public class OrderDto {
     private String studentName;
 
     private String teacherName;
+
+    private BigDecimal price;
 }

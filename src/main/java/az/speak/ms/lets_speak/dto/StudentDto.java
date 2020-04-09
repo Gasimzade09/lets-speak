@@ -10,6 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class StudentDto {
+    private Integer id;
 
     private String name;
 
@@ -29,9 +30,9 @@ public class StudentDto {
 
     private String photo;
 
-    private String teacherName;
+    private List<String> teacherName;
 
-    private List<String> freeDays;
+    private List<Integer> freeDays;
 
     private List<String> freeTimes;
 }

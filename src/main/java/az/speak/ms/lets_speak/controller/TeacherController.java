@@ -1,6 +1,7 @@
 package az.speak.ms.lets_speak.controller;
 
 import az.speak.ms.lets_speak.dto.TeacherDTO;
+import az.speak.ms.lets_speak.model.TeacherEntity;
 import az.speak.ms.lets_speak.service.TeacherService;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +21,7 @@ public class TeacherController {
     }
 
     @GetMapping("/teacher/get/{id}")
-    public TeacherDTO getTeacherById(@PathVariable Integer id){
+    public TeacherEntity getTeacherById(@PathVariable Integer id){
         return teacherService.getTeacherById(id);
     }
 

@@ -24,7 +24,7 @@ public class FileUploadController<handle> {
     @RequestMapping(value="/upload/{id}", method=RequestMethod.POST)
     public @ResponseBody String handleFileUpload(@PathVariable Integer id,
                                                  @RequestParam("file") MultipartFile file){
-        return fileUploadService.fileUpload(id, file);
+        return fileUploadService.setCvForTeacher(id, file);
     }
 
     @RequestMapping(value= "/upload/task/{studentId}/{teacherId}/{taskName}", method=RequestMethod.POST)

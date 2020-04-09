@@ -33,14 +33,13 @@ public class StudentEntity {
 
     private LocalDate birthDate;
 
-    private Double rank;
+    private Double rank = 0.0;
 
     private String photo;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "teacher_id")
+    @ManyToMany(mappedBy = "students")
     @JsonBackReference
-    private TeacherEntity teacher;
+    private Set<TeacherEntity> teachers;
 
     @EqualsAndHashCode.Exclude
     @ToString.Exclude

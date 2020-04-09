@@ -1,6 +1,8 @@
 package az.speak.ms.lets_speak.controller;
 
+import az.speak.ms.lets_speak.dto.OrderDto;
 import az.speak.ms.lets_speak.dto.StudentDto;
+import az.speak.ms.lets_speak.service.ScheduleService;
 import az.speak.ms.lets_speak.service.StudentService;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,9 +13,10 @@ import java.util.List;
 @RequestMapping("/api")
 public class StudentController {
     private final StudentService service;
-
-    public StudentController(StudentService service) {
+    private final ScheduleService scheduleService;
+    public StudentController(StudentService service, ScheduleService scheduleService) {
         this.service = service;
+        this.scheduleService = scheduleService;
     }
 
     @GetMapping("/teacher/get/students/{id}")
@@ -39,5 +42,10 @@ public class StudentController {
     @PostMapping(path = "/set/student/rank/{id}/{rank}")
     public void setRank(@PathVariable Integer id, @PathVariable Double rank){
         service.setRank(id, rank);
+    }
+
+    @PostMapping(path = "/set/order/{tariffId}")
+    public void setOrder(@PathVariable Integer tariffId, @RequestBody StudentDto studentDto){
+        service.getTeacherByDate(tariffId, studentDto);
     }
 }

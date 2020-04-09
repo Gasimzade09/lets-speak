@@ -21,7 +21,7 @@ public class EmailService {
             helper.setTo(to);
             helper.setSubject(subject);
             helper.setText(text);
-            System.out.println("Message Sending...");
+            System.out.println("Sending Message to "+ to+"...");
             this.emailSender.send(message);
         } catch (MessagingException messageException) {
             throw new RuntimeException(messageException);

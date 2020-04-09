@@ -1,5 +1,6 @@
 package az.speak.ms.lets_speak.service;
 
+import az.speak.ms.lets_speak.model.UserEntity;
 import az.speak.ms.lets_speak.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,14 @@ public class UserService {
     }
 
     public void setTokenByUsername(String username, String token) {
-        userRepository.setTokenByUsername(token, username);
+        UserEntity userEntity = userRepository.getByEmail(username);
+        userEntity.setToken(token);
+        userRepository.save(userEntity);
+    }
+
+    public void deleteToken(String username) {
+        UserEntity userEntity = userRepository.getByEmail(username);
+        userEntity.setToken(null);
+        userRepository.save(userEntity);
     }
 }

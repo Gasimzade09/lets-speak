@@ -2,6 +2,7 @@ package az.speak.ms.lets_speak.mappers;
 
 import az.speak.ms.lets_speak.dto.OrderDto;
 import az.speak.ms.lets_speak.model.OrderEntity;
+import org.springframework.data.domain.Page;
 
 import java.util.ArrayList;
 import java.util.List;

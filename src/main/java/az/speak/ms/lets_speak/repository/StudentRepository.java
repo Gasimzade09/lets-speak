@@ -22,4 +22,8 @@ public interface StudentRepository extends JpaRepository<StudentEntity, Integer>
     void setRank(Integer id, Double rank);
 
     StudentEntity getStudentEntityByEmail(String email);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 544e5c54ddb5e164d8513dbf32ce9bdea74234e5
 }

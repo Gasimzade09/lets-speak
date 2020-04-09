@@ -23,6 +23,8 @@ public class UserEntity {
 
     private String surname;
 
+    private String photo;
+
     private String email;
 
     private String skype;
@@ -38,5 +40,4 @@ public class UserEntity {
     private Integer privateId;
 
     private String token;
-
 }

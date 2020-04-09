@@ -154,5 +154,11 @@ public class StudentService {
                 .tariff(tariffRepository.getOne(tariffId))
                 .build();
         orderRepository.save(orderEntity);
+<<<<<<< HEAD
+=======
+        TeacherEntity teacher = teacherRepository.getOne(teacherId);
+        teacher.getStudents().add(studentRepository.getOne(studentId));
+        teacherRepository.save(teacher);
+>>>>>>> 544e5c54ddb5e164d8513dbf32ce9bdea74234e5
     }
 }

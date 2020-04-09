@@ -5,6 +5,7 @@ import az.speak.ms.lets_speak.model.TeacherEntity;
 import az.speak.ms.lets_speak.repository.StudentRepository;
 import az.speak.ms.lets_speak.repository.TaskRepository;
 import az.speak.ms.lets_speak.repository.TeacherRepository;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -43,7 +44,11 @@ public class FileUploadService {
                 TeacherEntity entity = teacherRepository.getOne(id);
                 entity.setCv("/uploads/cv/cv-"+ id+"-"+i+name.substring(lastIndexOf));
                 teacherRepository.save(entity);
+<<<<<<< HEAD
                 i++;
+=======
+
+>>>>>>> 544e5c54ddb5e164d8513dbf32ce9bdea74234e5
                 return "Вы удачно загрузили " + name + " в " + name + "-uploaded !";
             } catch (Exception e) {
                 return "Вам не удалось загрузить " + name + " => " + e.getMessage();
@@ -59,27 +64,36 @@ public class FileUploadService {
 
         File upload = new File("src\\main\\resources\\static\\uploads\\tasks\\task-"+
                 studentId+"-" + teacherId+ "-" + i + name.substring(lastIndexOf));
-        if (!file.isEmpty()) {
+        if (!file.isEmpty()&& name.substring(lastIndexOf).equals(".pdf")) {
             try {
                 byte[] bytes = file.getBytes();
                 BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(upload));
                 stream.write(bytes);
                 stream.close();
                 TaskEntity task = new TaskEntity();
+<<<<<<< HEAD
                 task.setUrl("/uploads/tasks/task-" + studentId + "-" + teacherId + "-" + i + name.substring(lastIndexOf));
+=======
+                task.setUrl("/uploads/tasks/task-" + studentId + "-" + teacherId + "-" + i + "-" + taskName + name.substring(lastIndexOf));
+>>>>>>> 544e5c54ddb5e164d8513dbf32ce9bdea74234e5
                 task.setName(taskName);
                 task.setStudent(studentRepository.getOne(studentId));
                 task.setTeacher(teacherRepository.getOne(teacherId));
                 task.setCreatedDate(LocalDate.now());
                 task.setExpirationDate(LocalDate.now().plusDays(10L));
                 taskRepository.save(task);
-
+                this.i++;
                 return "Вы удачно загрузили " + name + " в " + name + "-uploaded !";
             } catch (Exception e) {
                 return "Вам не удалось загрузить " + name + " => " + e.getMessage();
             }
-        } else {
+        } else if (!name.substring(lastIndexOf).equals(".pdf")){
+            return "Формат файла не поддерживается";
+        }
+        else {
             return "Вам не удалось загрузить " + name + " потому что файл пустой.";
         }
     }
+
+
 }

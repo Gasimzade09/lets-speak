@@ -2,6 +2,10 @@ package az.speak.ms.lets_speak.mappers;
 
 import az.speak.ms.lets_speak.dto.TariffDto;
 import az.speak.ms.lets_speak.model.TariffEntity;
+import org.springframework.data.domain.Page;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +35,11 @@ public class TariffMapper {
         return entity;
     }
 
+<<<<<<< HEAD
     public static List<TariffDto> entityListToDtoList(List<TariffEntity> tariffEntities){
+=======
+    public static List<TariffDto> entityListToDtoList(Page<TariffEntity> tariffEntities){
+>>>>>>> 544e5c54ddb5e164d8513dbf32ce9bdea74234e5
         List<TariffDto> dtos = new ArrayList<>();
         for (TariffEntity t : tariffEntities) {
             dtos.add(entityToDto(t));

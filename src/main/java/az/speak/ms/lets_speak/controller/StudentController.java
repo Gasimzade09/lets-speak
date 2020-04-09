@@ -48,4 +48,9 @@ public class StudentController {
     public void setOrder(@PathVariable Integer tariffId, @RequestBody StudentDto studentDto){
         service.getTeacherByDate(tariffId, studentDto);
     }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 544e5c54ddb5e164d8513dbf32ce9bdea74234e5
 }

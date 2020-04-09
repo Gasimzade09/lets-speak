@@ -12,7 +12,7 @@ import java.util.List;
 @CrossOrigin
 @RestController
 @RequestMapping("/api")
-@Api(value = "/api", description = "Операции с профилем")
+@Api(value = "/api", description = "Операции с рассписанием")
 public class ScheduleController {
 
     private final ScheduleService scheduleService;

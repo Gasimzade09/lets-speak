@@ -1,16 +1,12 @@
 server:
   port: 8080
-
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     platform: postgres
-    url: jdbc:postgresql://ec2-54-243-193-59.compute-1.amazonaws.com:5432/dar21uceu47sfo
-    username: azdsnzzcaqcmsc
-    password: f20ca998b48afa5b8c74e16a6b9703b81a07be8caf2b5b283e36b8adf542ccb6
-  flyway:
-    locations: classpath:db/migration
-    baseline-on-migrate: true
+    url: jdbc:postgresql://ec2-54-159-112-44.compute-1.amazonaws.com:5432/d39i5jhsnc9gm1
+    username: dlxxstrwminvmv
+    password: 131120aed2033cc032ae270b71cbabcdb7b36477c494e3da9691041ef741ee24
   mail:
     host: smtp.gmail.com
     port: 587

@@ -5,10 +5,9 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     platform: postgres
-    url: jdbc:postgresql://ec2-34-233-186-251.compute-1.amazonaws.com:5432/d7vjtu4bjnu4v0
-
-    username: jstphmmehcymrq
-    password: b88babd9c8533553868cc059a09c846ea4214096c802e1b11832f9a4676f233a
+    url: jdbc:postgresql:////ec2-18-233-137-77.compute-1.amazonaws.com:5432/dar21uceu47sfo
+    username: azdsnzzcaqcmsc
+    password: f20ca998b48afa5b8c74e16a6b9703b81a07be8caf2b5b283e36b8adf542ccb6
   flyway:
     locations: classpath:db/migration
     baseline-on-migrate: true
